@@ -1,5 +1,3 @@
-# CoordinationGames
-
 # CoordinationGames.jl
 
 A package to initiate and apply various solution methods to cooperative transferable utility games.
