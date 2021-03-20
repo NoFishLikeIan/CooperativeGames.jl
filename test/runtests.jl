@@ -34,4 +34,13 @@ end
     S = [1, 3]
     @test CoordinationGames.Δₕ(G, G.N) == -1
     @test CoordinationGames.Δₕ(G, S) == 2 
+
+    shapley = [5 5 2]' ./ 3
+
+    # Permutation shapley value
+    @test isapprox(CoordinationGames.fₛ(G), shapley)
+
+    # Harsanyi dividend shapley value
+    HarsanyiShapley = (i -> CoordinationGames.fₛⁱ(G, i))
+    @test isapprox(HarsanyiShapley.(G.N), shapley)
 end
