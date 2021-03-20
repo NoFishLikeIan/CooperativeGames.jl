@@ -16,7 +16,7 @@ end
 Breadth first test of convexity of a game,
 
 For all S, T ∈ P(G):
-v(S ∪ T) + v(S ∩ T) < v(S) + v(T)
+v(S ∪ T) + v(S ∩ T) ≥ v(S) + v(T)
 """
 function isconvex(G::Game)
     v = G.v
@@ -27,7 +27,7 @@ function isconvex(G::Game)
             if v(S ∪ T) + v(S ∩ T) < v(S) + v(T)
                 return false
             end
-        end
+    end
     end
 
     return true

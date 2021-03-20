@@ -43,4 +43,11 @@ end
     # Harsanyi dividend shapley value
     HarsanyiShapley = (i -> CooperativeGames.fₛⁱ(G, i))
     @test isapprox(HarsanyiShapley.(G.N), shapley)
+
+    BanhafValue = (i -> CooperativeGames.fᵦⁱ(G, i))
+    banhaf = [1. 1. 0.42857]'
+    @test isapprox(
+        BanhafValue.(G.N), banhaf;
+        atol=1e-3
+    )
 end

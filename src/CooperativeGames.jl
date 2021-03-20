@@ -10,6 +10,7 @@ include("utils.jl")
 include("games.jl")
 include("solutions/harsanyi.jl")
 include("solutions/shapley.jl")
+include("solutions/banzhaf.jl")
 include("solutions/core.jl")
 
 end
