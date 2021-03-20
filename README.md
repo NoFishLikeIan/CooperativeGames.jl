@@ -6,14 +6,49 @@ A package to initiate and apply various solution methods to cooperative transfer
 
 ### Definitions 
 
-A cooperative game is a pair,
+A cooperative game is composed by a set of players N and a function v, measure of the powerset of N.
 
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Balign%2A%7D%0A%26%28N%2C+v%29%3A+%5C%5C%0A%26N+%5Csubseteq+%5C%7B1%2C+2%2C+%5Cldots%2C+n%5C%7D%2C%5C%5C%0A%26v%3A+2%5En+%5Cmapsto+%5Cmathbb%7BR%7D%2C+%5C+v%28%5Cemptyset%29+%3D+0%0A%5Cend%7Balign%2A%7D%0A" 
-alt="\begin{align*}
-&(N, v): \\
-&N \subseteq \{1, 2, \ldots, n\},\\
-&v: 2^n \mapsto \mathbb{R}, \ v(\emptyset) = 0
-\end{align*}
-">
+### Initiate a Game
+
+A game can be initiated with, 
+
+```julia
+one, two, three = [1], [2], [3]
+N = one ∪ two ∪ three
+
+v(S::Int) = v([S])
+function v(S::Players)
+  if isempty(S) return 0. end
+  # Mapping from S subset of N onto R
+end
+
+G = Game(N, v)
+```
+
+and can be tested for convexity as
+
+```julia
+isconvex(G) # false
+```
+
+Monotonicity and core algorithm coming up!
+
+### Solutions
+
+One can compute the Harsanyi dividend for a coalition with 
+
+```julia
+S = [1, 3]
+
+Δₕ(G, S)
+```
+
+and the Shapley value using
+
+```julia
+fₛ(G) # Permutation solution
+
+[fₛⁱ(G, i) for i in G.N] # With Harsanyi dividends
+
+```
 
