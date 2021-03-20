@@ -1,4 +1,4 @@
-module CoordinationGames
+module CooperativeGames
 
 # Write your package code here.
 

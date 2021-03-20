@@ -1,4 +1,4 @@
-using CoordinationGames
+using CooperativeGames
 using Test
 
 begin # Setup
@@ -7,7 +7,7 @@ begin # Setup
 
 
     v(S::Int) = v([S])
-    function v(S::CoordinationGames.Players)
+    function v(S::CooperativeGames.Players)
     S = sort(S)
     if S == N 4
     elseif S == one 1
@@ -18,7 +18,7 @@ begin # Setup
         elseif S == two ∪ three 2
         elseif isempty(S) 0 end end
 
-    G = CoordinationGames.Game(N, v)
+    G = CooperativeGames.Game(N, v)
 end
 
 @testset "Game" begin
@@ -26,21 +26,21 @@ end
     S = [1, 2, 3]
     
     @test G.v(S) == 4
-    @test !CoordinationGames.isconvex(G)
+    @test !CooperativeGames.isconvex(G)
 
 end
 
 @testset "Solutions" begin
     S = [1, 3]
-    @test CoordinationGames.Δₕ(G, G.N) == -1
-    @test CoordinationGames.Δₕ(G, S) == 2 
+    @test CooperativeGames.Δₕ(G, G.N) == -1
+    @test CooperativeGames.Δₕ(G, S) == 2 
 
     shapley = [5 5 2]' ./ 3
 
     # Permutation shapley value
-    @test isapprox(CoordinationGames.fₛ(G), shapley)
+    @test isapprox(CooperativeGames.fₛ(G), shapley)
 
     # Harsanyi dividend shapley value
-    HarsanyiShapley = (i -> CoordinationGames.fₛⁱ(G, i))
+    HarsanyiShapley = (i -> CooperativeGames.fₛⁱ(G, i))
     @test isapprox(HarsanyiShapley.(G.N), shapley)
 end
