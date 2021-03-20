@@ -1,9 +1,7 @@
 using CoordinationGames
 using Test
 
-
-@testset "Game" begin
-
+begin # Setup
     one, two, three = [1], [2], [3]
     N = one ∪ two ∪ three
 
@@ -21,9 +19,19 @@ using Test
         elseif isempty(S) 0 end end
 
     G = CoordinationGames.Game(N, v)
-    coalition = [1, 2, 3]
+end
+
+@testset "Game" begin
+
+    S = [1, 2, 3]
     
-    @test G.v(coalition) == 4
+    @test G.v(S) == 4
     @test !CoordinationGames.isconvex(G)
 
+end
+
+@testset "Solutions" begin
+    S = [1, 3]
+    @test CoordinationGames.Δₕ(G, G.N) == -1
+    @test CoordinationGames.Δₕ(G, S) == 2 
 end
