@@ -1,7 +1,7 @@
 using CooperativeGames
 using Test
 
-begin # Setup
+begin # Setup for simple graph
     one, two, three = [1], [2], [3]
     N = one ∪ two ∪ three
 
@@ -50,4 +50,12 @@ end
         BanhafValue.(G.N), banhaf;
         atol=1e-3
     )
+end
+
+begin # Setup for directed graph
+    N = collect(1:6)
+    L = [(1, 2), (1, 3), (2, 4), (3, 5), (4, 5), (5, 6)]
+    v(S::CooperativeGames.Players) = (1 ∈ S && 6 ∈ S) ? 1 : 0
+
+    G = CooperativeGames.GraphGame(N, v, L)
 end
