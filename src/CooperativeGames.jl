@@ -1,13 +1,13 @@
 module CooperativeGames
 
-# Write your package code here.
-
 using IterTools
 using Base.Iterators
 using Combinatorics
 
+include("types.jl")
 include("utils.jl")
 include("games.jl")
+include("graphs.jl")
 include("solutions/harsanyi.jl")
 include("solutions/shapley.jl")
 include("solutions/banzhaf.jl")

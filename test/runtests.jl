@@ -18,10 +18,10 @@ begin # Setup
         elseif S == two ∪ three 2
         elseif isempty(S) 0 end end
 
-    G = CooperativeGames.Game(N, v)
+    G = CooperativeGames.SimpleGame(N, v)
 end
 
-@testset "Game" begin
+@testset "SimpleGame" begin
 
     S = [1, 2, 3]
     

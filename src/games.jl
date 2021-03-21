@@ -1,10 +1,3 @@
-Players = Union{Vector{Int},Set{Int}}
-
-struct Game
-    N::Players
-    v::Function
-end
-
 """
 Maps v to every possible coalition P(G)
 """
@@ -26,7 +19,7 @@ function isconvex(G::Game)
         for S in drop(coalitions, i)
             if v(S ∪ T) + v(S ∩ T) < v(S) + v(T)
                 return false
-            end
+        end
     end
     end
 
