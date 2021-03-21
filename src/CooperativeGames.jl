@@ -3,6 +3,7 @@ module CooperativeGames
 using IterTools
 using Base.Iterators
 using Combinatorics
+using LightGraphs
 
 include("types.jl")
 include("utils.jl")
