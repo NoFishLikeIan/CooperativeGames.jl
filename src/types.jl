@@ -28,6 +28,11 @@ struct GraphGame
 
         new(N, v, g)
     end
+
+    function GraphGame(N::Players, v::Function, g::SimpleGraph)
+        new(N, v, g)
+    end
+
 end
 
 Game = Union{GraphGame,SimpleGame}
