@@ -91,4 +91,6 @@ end
 @testset "Degree Solutions" begin
 
     @test isapprox(CooperativeGames.fₛ(GBorm), [1 1 1 0]' ./ 3)
+
+    @test isapprox(CooperativeGames.degreeHarsanyi(GBorm), [2 1 1 0]' ./ 4)
 end
