@@ -1,6 +1,8 @@
 using CooperativeGames
 using Test
 
+using IterTools
+
 begin # Setup for simple graph
     one, two, three = [1], [2], [3]
     N = one ∪ two ∪ three
@@ -58,4 +60,15 @@ begin # Setup for directed graph
     v(S::CooperativeGames.Players) = (1 ∈ S && 6 ∈ S) ? 1 : 0
 
     G = CooperativeGames.GraphGame(N, v, L)
+end
+
+@testset "Myerson" begin
+    nonzero = [[1,3,5,6], [1,2,3,5,6], [1,2,4,5,6], [1,3,4,5,6], [1,2,3,4,5,6]]
+    others = [s for s in subsets(G.N) if s ∉ nonzero]
+
+    MyersonG = CooperativeGames.graphtoMyerson(G)
+
+    @test all(map(MyersonG.v, nonzero) .== 1)
+    @test all(map(MyersonG.v, others) .== 0)
+
 end
