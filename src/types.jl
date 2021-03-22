@@ -31,3 +31,23 @@ struct GraphGame
 end
 
 Game = Union{GraphGame,SimpleGame}
+
+struct SubComponents
+    G::GraphGame
+end
+
+function subcomponents(G::GraphGame)
+    SubComponents(G)
+end
+
+function Base.iterate(
+    S::SubComponents, 
+    state=fill(false, length(S.G.N) + 1))
+
+    state[end] && return nothing
+
+    coal, newstate = iterate(subsets(S.G.N), state)
+
+    return induced_subgraph(S.G.g, coal), newstate
+
+end
