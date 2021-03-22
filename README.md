@@ -1,18 +1,36 @@
 # CooperativeGames.jl
 
-A package to initiate and apply various solution methods to cooperative transferable utility games.
+A package to initiate and apply various solution methods to [cooperative transferable utility games](https://en.wikipedia.org/wiki/Cooperative_game_theory).
 
-### Definitions 
+### Install
 
-A cooperative game is composed by a set of players N and a function v, measure of the powerset of N.
-
-### Initiate a Game
-
-A game can be initiated with, 
+You can install using
 
 ```julia
-one, two, three = [1], [2], [3]
-N = one ∪ two ∪ three
+using Pkg; Pkg.add("CooperativeGames")
+```
+
+and load with
+
+```julia
+using CooperativeGames
+```
+
+
+### What can you do
+
+*Implements* simple, graph, link, and [river](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/WR005i004p00749) games. 
+
+*Solve* with Harsanyi dividends, Shapley, Myerson, Banhaf value. 
+
+*Test* for core and fairness.
+
+### Getting started
+
+Get started by defining a set of player `N` and a measure on `powerset(N)`, `v`.
+
+```julia
+N = [1, 2, 3] 
 
 v(S::Int) = v([S])
 function v(S::Players)
@@ -20,33 +38,15 @@ function v(S::Players)
   # Mapping from S subset of N onto R
 end
 
-G = Game(N, v)
+G = SimpleGame(N, v)
 ```
 
-and can be tested for convexity as
+If your game has a graph structure, simply do,
 
 ```julia
-isconvex(G) # false
+L = [(1, 2), (2, 3)]
+
+G = GraphGame(N, v, L)
 ```
 
-Monotonicity and core algorithm coming up!
-
-### Solutions
-
-One can compute the Harsanyi dividend for a coalition with 
-
-```julia
-S = [1, 3]
-
-Δₕ(G, S)
-```
-
-and the Shapley value using
-
-```julia
-fₛ(G) # Permutation solution
-
-[fₛⁱ(G, i) for i in G.N] # With Harsanyi dividends
-
-```
-
+This implementation relies on `LightGraphs`.
