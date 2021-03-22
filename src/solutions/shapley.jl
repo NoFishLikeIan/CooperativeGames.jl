@@ -8,7 +8,7 @@ end
 """
 Shapey value using permutations
 """
-function fₛ(G::Game)
+function fₛ(G::SimpleGame)
     N = length(G.N)
     Nσ = factorial(N)
 
@@ -25,3 +25,9 @@ function fₛ(G::Game)
 
     return shapley ./ Nσ
 end
+fₛ(G::GraphGame) = fₛ(graphtoMyerson(G))
+
+"""
+Myerson solution, it is equivalent to the Shapley value of the Myerson game.
+"""
+μ(G::SimpleGame, L::Array{NTuple{2,Int}}) = fₛ(GraphGame(G.N, G.v, L))

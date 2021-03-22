@@ -71,4 +71,10 @@ end
     @test all(map(MyersonG.v, nonzero) .== 1)
     @test all(map(MyersonG.v, others) .== 0)
 
+    shapley = [17 / 60,  1 / 30,  1 / 12,  1 / 30,  17 / 60,  17 / 60]
+
+    @test isapprox(
+        CooperativeGames.fₛ(G), shapley
+    )
+
 end
