@@ -1,5 +1,7 @@
 # CooperativeGames.jl
 
+<img src="./docs/logo.svg" width="150px">  
+
 A package to initiate and apply various solution methods to [cooperative transferable utility games](https://en.wikipedia.org/wiki/Cooperative_game_theory).
 
 ### Install
