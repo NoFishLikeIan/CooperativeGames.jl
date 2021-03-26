@@ -15,4 +15,13 @@ module CooperativeGames
     include("solutions/core.jl")
     include("solutions/fairness.jl")
 
+    export Players, SimpleGame, GraphGame,
+
+        # Methods
+        isconvex, isfair, graphtoMyerson,
+
+        # Solutions
+        Δₕ, fₛ, fₛⁱ, fᵦⁱ, degreeHarsanyi
+        
+
 end
